@@ -1,0 +1,36 @@
+{
+    "transactions": [
+        {
+            "id": 1,
+            "text": "Flower",
+            "amount": -19.99,
+            "date": "2024-01-15",
+            "type": "Expense",
+            "category": "Home"
+        },
+        {
+            "id": 2,
+            "text": "Salary",
+            "amount": 299.97,
+            "date": "2024-01-05",
+            "type": "Income",
+            "category": "Salary"
+        },
+        {
+            "id": 3,
+            "text": "Book",
+            "amount": -10.00,
+            "date": "2024-01-10",
+            "type": "Expense",
+            "category": "Education"
+        },
+        {
+            "id": 4,
+            "text": "Camera",
+            "amount": 150.00,
+            "date": "2024-01-20",
+            "type": "Expense",
+            "category": "Electronics"
+        }
+    ]
+}
