@@ -39,7 +39,7 @@ const onDelete = (target) => {
         </li>
 
     </ul>
-    <div v-else class="text-gray-500 text-sm px-14">
+    <div v-else class="text-gray-500 text-sm px-14 text-center">
         Nothing for now.
     </div>
 </template>

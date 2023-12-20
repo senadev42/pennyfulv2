@@ -1,5 +1,7 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+
+
 
 // Components
 import Header from './components/Header.vue';
@@ -10,7 +12,16 @@ import AddTransaction from './components/AddTransaction.vue'
 import mockdata from "./mockdata.json"
 
 // State
-let transactions = ref(mockdata.transactions);
+let transactions = ref([]);
+
+// on mount
+onMounted(() => {
+  const savedTransactions = JSON.parse(localStorage.getItem('transactions'));
+
+  if (savedTransactions) {
+    transactions.value = savedTransactions;
+  }
+});
 
 const total = computed(() => {
   return transactions.value.reduce((acc, transaction) => {
@@ -33,6 +44,7 @@ const expenses = computed(() => {
 });
 
 
+// handers
 const handleTransactionSubmitted = (transactionData) => {
   console.log("inapp", transactionData);
 
@@ -42,6 +54,8 @@ const handleTransactionSubmitted = (transactionData) => {
     text: transactionData.text,
     amount: transactionData.amount
   });
+
+  saveTransactionsToLocalStorage();
 };
 
 const handleTransactionDeleted = (id) => {
@@ -50,6 +64,12 @@ const handleTransactionDeleted = (id) => {
   transactions.value = transactions.value.filter(
     (transaction) => transaction.id !== id
   );
+
+  saveTransactionsToLocalStorage();
+};
+
+const saveTransactionsToLocalStorage = () => {
+  localStorage.setItem('transactions', JSON.stringify(transactions.value));
 };
 
 </script>
