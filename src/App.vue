@@ -11,18 +11,46 @@ import TransactionList from './components/TransactionList.vue';
 import AddTransaction from './components/AddTransaction.vue'
 import mockdata from "./mockdata.json"
 
-// State
-let transactions = ref([]);
-
 // on mount
 onMounted(() => {
   const savedTransactions = JSON.parse(localStorage.getItem('transactions'));
 
-  if (savedTransactions) {
-    transactions.value = savedTransactions;
+  if (savedTransactions && datasource == "localstorage") {
+    transactions.value = savedTransactions
+  } else {
+    transactions.value = mockdata.transactions;
   }
+
 });
 
+//data source logic
+let transactions = ref([]);
+
+let datasource = ref('mock');
+
+const changedatasource = () => {
+  console.log(datasource.value);
+  if (datasource.value == 'mock') {
+    console.log("changing to localstorage")
+    datasource.value = 'localstorage';
+    transactions.value = JSON.parse(localStorage.getItem('transactions'));
+    return;
+  }
+  if (datasource.value == 'localstorage') {
+    console.log("changing to mock")
+    datasource.value = 'mock';
+    transactions.value = mockdata.transactions;
+    return;
+  }
+}
+
+const datasourcebuttonstyle = () => {
+
+}
+
+
+
+//computed values
 const total = computed(() => {
   return transactions.value.reduce((acc, transaction) => {
     return acc + transaction.amount;
@@ -44,10 +72,9 @@ const expenses = computed(() => {
 });
 
 
-// handers
+// handlers
 const handleTransactionSubmitted = (transactionData) => {
   console.log("inapp", transactionData);
-
 
   transactions.value.push({
     id: Math.floor(Math.random() * 1000000),
@@ -55,7 +82,7 @@ const handleTransactionSubmitted = (transactionData) => {
     amount: transactionData.amount
   });
 
-  saveTransactionsToLocalStorage();
+  if (datasource.value == 'localstorage') saveTransactionsToLocalStorage();
 };
 
 const handleTransactionDeleted = (id) => {
@@ -65,12 +92,17 @@ const handleTransactionDeleted = (id) => {
     (transaction) => transaction.id !== id
   );
 
-  saveTransactionsToLocalStorage();
+  if (datasource.value == 'localstorage') saveTransactionsToLocalStorage();
 };
 
 const saveTransactionsToLocalStorage = () => {
   localStorage.setItem('transactions', JSON.stringify(transactions.value));
 };
+
+
+
+
+
 
 </script>
 
@@ -79,17 +111,34 @@ const saveTransactionsToLocalStorage = () => {
   <div class="bg-gray-100 min-h-screen flex flex-col items-center pb-8">
 
     <div class="md:p-2 py-2 flex flex-col gap-y-4 mx-2">
-      <!-- <Header /> -->
-      <div class="px-24">
+
+      <div class="px-48">
         <Balance :total="total" />
       </div>
 
       <IncomeExpenses :income="+income" :expenses="+expenses" />
+
+      <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
+
+      <!-- data source -->
+      <div class="text-xs flex flex-row items-start justify-end gap-x-2 mr-2 ">
+        <p>
+          datasource: {{ datasource }}
+        </p>
+        <button @click="changedatasource">
+          <i class="pi text-teal-300 hover:text-teal-800"
+            :class="datasource == 'mock' ? 'pi-chevron-up' : 'pi-chevron-down'" />
+        </button>
+      </div>
+
       <div class="mt-2">
         <TransactionList :transactions="transactions" @transactionDeleted="handleTransactionDeleted" />
       </div>
 
-      <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
+
+
+
+
     </div>
   </div>
 </template>

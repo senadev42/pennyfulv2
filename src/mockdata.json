@@ -4,13 +4,49 @@
             "id": 1,
             "text": "Salary",
             "amount": 7500,
-            "category": "Home"
+            "category": "Income"
         },
         {
             "id": 2,
             "text": "Rent",
             "amount": -2200,
-            "category": "Salary"
+            "category": "Housing"
+        },
+        {
+            "id": 3,
+            "text": "Groceries",
+            "amount": -150,
+            "category": "Food"
+        },
+        {
+            "id": 4,
+            "text": "Internet Bill",
+            "amount": -50,
+            "category": "Utilities"
+        },
+        {
+            "id": 5,
+            "text": "Dinner at Restaurant",
+            "amount": -80,
+            "category": "Food"
+        },
+        {
+            "id": 7,
+            "text": "Gym Membership",
+            "amount": -30,
+            "category": "Health"
+        },
+        {
+            "id": 9,
+            "text": "Birthday Gift",
+            "amount": -50,
+            "category": "Gifts"
+        },
+        {
+            "id": 10,
+            "text": "Bonus",
+            "amount": 500,
+            "category": "Income"
         }
     ]
 }

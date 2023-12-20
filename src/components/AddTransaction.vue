@@ -7,10 +7,10 @@ const amount = ref('');
 
 const buttonStyle = computed(() => {
     return amount.value > 0 ? {
-        actualStyle: "bg-green-400 hover:bg-green-500",
+        actualStyle: "border-b border-green-400 text-green-400 hover:text-black",
         text: "Add Inflow"
     } : {
-        actualStyle: "bg-red-400 hover:bg-red-500",
+        actualStyle: "border-b border-red-400 text-red-400 hover:text-black hover:bg-red-400",
         text: "Subtract Expense"
     }
 
@@ -62,11 +62,12 @@ const clearform = () => {
                     class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
             </div>
 
-            <div class="grid grid-cols-4 gap-x-1 w-[20rem]">
-                <button type="submit" class="text-white focus:outline-none p-2 rounded-md col-span-3"
+            <div class="grid grid-cols-4 gap-x-1">
+                <button type="submit" class="text-white focus:outline-none p-2 col-span-3"
                     :class="buttonStyle.actualStyle">{{
                         buttonStyle.text }}</button>
-                <button @click="clearform" class="text-white bg-slate-400 focus:outline-none p-2 col-span-1">Clear</button>
+                <button @click="clearform"
+                    class=" border-y-slate-500 border-black text-slate-400 focus:outline-none p-2 col-span-1 rounded-md">Clear</button>
             </div>
             <!-- the button -->
 
