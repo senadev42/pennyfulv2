@@ -26,18 +26,16 @@ const onDelete = (target) => {
     <!-- loop through transactions -->
     <ul v-if="transactions.length > 0" id="list" class="bg-white p-4 rounded-lg shadow-sm">
         <li v-for="transaction in transactions" :key="transaction.id"
-            class="grid grid-cols-7 gap-x-6 text-start border-b border-gray-200 py-2 text-sm md:text-base">
+            class="grid grid-cols-5 gap-x-6 text-start border-b border-gray-200 py-2 text-sm md:text-base">
             <span class="text-gray-800 col-span-2">{{ transaction.text }}</span>
 
             <span :class="transactionClass(transaction.amount)" class="col-span-2">
-                ${{ transaction.amount }}
-            </span>
+                ${{ transaction.amount < 0 ? transaction.amount * -1 : transaction.amount }} </span>
 
-            <span class="text-gray-700 col-span-2">{{ transaction.date }}</span>
 
-            <button class="delete-btn focus:outline-none col-span-1" @click="onDelete(transaction.id)">
-                <i class="pi pi-trash text-teal-300 hover:text-teal-800" />
-            </button>
+                    <button class="delete-btn focus:outline-none col-span-1" @click="onDelete(transaction.id)">
+                        <i class="pi pi-trash text-teal-300 hover:text-teal-800" />
+                    </button>
         </li>
 
     </ul>
