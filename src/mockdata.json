@@ -4,49 +4,65 @@
             "id": 1,
             "text": "Salary",
             "amount": 7500,
-            "category": "Income"
+            "date": "2024-01-01",
+            "category": "Income",
+            "paymentType": "Direct Deposit"
         },
         {
             "id": 2,
             "text": "Rent",
             "amount": -2200,
-            "category": "Housing"
+            "date": "2024-01-02",
+            "category": "Housing",
+            "paymentType": "Bank Transfer"
         },
         {
             "id": 3,
             "text": "Groceries",
             "amount": -150,
-            "category": "Food"
+            "date": "2024-01-03",
+            "category": "Food",
+            "paymentType": "Credit Card"
         },
         {
             "id": 4,
             "text": "Internet Bill",
             "amount": -50,
-            "category": "Utilities"
+            "date": "2024-01-04",
+            "category": "Utilities",
+            "paymentType": "Auto Pay"
         },
         {
             "id": 5,
             "text": "Dinner at Restaurant",
             "amount": -80,
-            "category": "Food"
+            "date": "2024-01-05",
+            "category": "Food",
+            "paymentType": "Credit Card"
         },
         {
             "id": 7,
             "text": "Gym Membership",
             "amount": -30,
-            "category": "Health"
+            "date": "2024-01-06",
+            "category": "Health",
+            "paymentType": "Monthly Subscription"
         },
         {
             "id": 9,
             "text": "Birthday Gift",
             "amount": -50,
-            "category": "Gifts"
+            "date": "2024-01-07",
+            "category": "Gifts",
+            "paymentType": "Cash"
         },
         {
             "id": 10,
             "text": "Bonus",
             "amount": 500,
-            "category": "Income"
+            "date": "2024-01-08",
+            "category": "Income",
+            "paymentType": "Direct Deposit"
         }
     ]
 }

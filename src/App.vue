@@ -120,7 +120,7 @@ const saveTransactionsToLocalStorage = () => {
 
       <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
 
-      <!-- data source -->
+      <!-- switch data source -->
       <div class="text-xs flex flex-row items-start justify-end gap-x-2 mr-2 ">
         <p>
           datasource: {{ datasource }}
@@ -134,10 +134,6 @@ const saveTransactionsToLocalStorage = () => {
       <div class="mt-2">
         <TransactionList :transactions="transactions" @transactionDeleted="handleTransactionDeleted" />
       </div>
-
-
-
-
 
     </div>
   </div>

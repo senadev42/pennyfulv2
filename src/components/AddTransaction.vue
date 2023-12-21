@@ -2,8 +2,16 @@
 
 import { ref, computed } from 'vue';
 
+// form data
 const text = ref('');
 const amount = ref('');
+const category = ref('');
+const date = ref('');
+const paymentType = ref('');
+
+
+
+
 
 const buttonStyle = computed(() => {
     return amount.value > 0 ? {
@@ -19,7 +27,7 @@ const buttonStyle = computed(() => {
 let submitemit = defineEmits(['transactionSubmitted']);
 
 const onSubmit = () => {
-    // console.log(buttonStyle.value.actualStyle)
+
     //basic validation
     if (!text.value || !amount.value) {
         console.log('Both fields must be filled.');
@@ -32,10 +40,6 @@ const onSubmit = () => {
     };
 
     submitemit('transactionSubmitted', onetransaction);
-
-    // clear field?
-    // text.value = '';
-    // amount.value = '';
 };
 
 const clearform = () => {
@@ -45,22 +49,60 @@ const clearform = () => {
 
 
 
+// categories
+const categories = ['Food', 'Housing', 'Utilities', 'Transportation', 'Entertainment', 'Health', 'Education', 'Gifts', 'Miscellaneous', 'Savings'];
+const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
+
 </script>
 
 <template>
     <div class="mt-2">
         <form id="form" @submit.prevent="onSubmit"
             class="bg-white p-4 rounded-md shadow-md text-xs md:text-sm flex flex-col items-stretch">
-            <!-- text -->
-            <div class="form-control mb-4">
-                <input type="text" id="text" placeholder="Groceries" v-model="text"
-                    class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
+
+            <!-- one row -->
+            <div class="flex flex-row gap-x-2">
+                <!-- text -->
+                <div class="form-control mb-4 w-full">
+                    <input type="text" id="text" placeholder="Groceries" v-model="text"
+                        class="w-full border border-gray-300 rounded-md py-2 px-2 focus:outline-none focus:border-teal-500" />
+                </div>
+                <!-- amount -->
+                <div class="form-control mb-4 w-full ">
+                    <input type="text" id="amount" placeholder="-13.50" v-model="amount"
+                        class="w-full border border-gray-300 rounded-md py-2 px-2 focus:outline-none focus:border-teal-500" />
+                </div>
+
             </div>
-            <!-- amount -->
-            <div class="form-control mb-4">
-                <input type="text" id="amount" placeholder="-13" v-model="amount"
-                    class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
+
+            <!-- one row -->
+            <div class="flex flex-row gap-x-2 justify-around">
+
+                <!-- category dropdown -->
+                <div class="form-control mb-4 w-full">
+                    <select id="category" v-model="category"
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
+                        <option value="" disabled selected>Category</option>
+                        <option v-for="cat in categories" :key="cat">{{ cat }}</option>
+                    </select>
+                </div>
+
+                <!-- date -->
+                <div class="form-control mb-4 w-full">
+                    <input type="date" id="date" v-model="date"
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500" />
+                </div>
+
+                <!-- payment dropdown -->
+                <div class="form-control mb-4 w-full">
+                    <select id="paymentType" v-model="paymentType"
+                        class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
+                        <option value="" disabled selected>Payment</option>
+                        <option v-for="payment in paymentTypes" :key="payment">{{ payment }}</option>
+                    </select>
+                </div>
             </div>
+
 
             <div class="grid grid-cols-4 gap-x-1">
                 <button type="submit" class="text-white focus:outline-none p-2 col-span-3"
