@@ -24,20 +24,22 @@ const onDelete = (target) => {
         <div v-for="transaction in transactions" :key="transaction.id">
             <li class="grid grid-cols-8 gap-x-6 text-start border-b border-gray-200 py-2 text-sm md:text-base">
 
-
+                <!-- Transaction name -->
                 <span class="text-gray-800 col-span-4">{{ transaction.text }}</span>
 
+                <!-- Transaction amount -->
                 <span :class="transactionClass(transaction.amount)" class="col-span-2">
-                    ${{ transaction.amount < 0 ? transaction.amount * -1 : transaction.amount }} </span>
+                    ${{ Math.abs(transaction.amount)
+                    }} </span>
 
-                        <!-- more info -->
-                        <button class="delete-btn focus:outline-none col-span-1" @click="moreinfo(transaction.id)">
-                            <!-- <i class="pi pi-info-circle text-teal-300 hover:text-teal-800" /> -->
-                        </button>
-                        <!-- delete -->
-                        <button class="delete-btn focus:outline-none col-span-1" @click="onDelete(transaction.id)">
-                            <i class="pi pi-trash text-teal-300 hover:text-teal-800" />
-                        </button>
+                <!-- more info -->
+                <button class="delete-btn focus:outline-none col-span-1" @click="moreinfo(transaction.id)">
+                    <!-- <i class="pi pi-info-circle text-teal-300 hover:text-teal-800" /> -->
+                </button>
+                <!-- delete -->
+                <button class="delete-btn focus:outline-none col-span-1" @click="onDelete(transaction.id)">
+                    <i class="pi pi-trash text-teal-300 hover:text-teal-800" />
+                </button>
             </li>
             <!-- <li class="grid grid-cols-3 gap-x-2 text-center bg-zinc-200 py-2 text-sm md:text-base">
                 <div class="col-span-1">

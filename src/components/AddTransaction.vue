@@ -76,9 +76,8 @@ const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
             </div>
 
             <!-- one row -->
-            <div class="flex flex-col md:flex-row gap-x-2 justify-around">
+            <!-- <div class="flex flex-col md:flex-row gap-x-2 justify-around">
 
-                <!-- category dropdown -->
                 <div class="form-control mb-4 w-full">
                     <select id="category" v-model="category"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
@@ -87,13 +86,11 @@ const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
                     </select>
                 </div>
 
-                <!-- date -->
                 <div class="form-control mb-4 w-full">
                     <input type="date" id="date" v-model="date"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500" />
                 </div>
 
-                <!-- payment dropdown -->
                 <div class="form-control mb-4 w-full">
                     <select id="paymentType" v-model="paymentType"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
@@ -101,7 +98,7 @@ const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
                         <option v-for="payment in paymentTypes" :key="payment">{{ payment }}</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="grid grid-cols-4 gap-x-1">
