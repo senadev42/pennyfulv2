@@ -44,10 +44,6 @@ const changedatasource = () => {
   }
 }
 
-const datasourcebuttonstyle = () => {
-
-}
-
 
 
 //computed values
@@ -100,7 +96,28 @@ const saveTransactionsToLocalStorage = () => {
 };
 
 
+//export and import
+const exportdata = (livetransactions) => {
+  const transactions = livetransactions;
 
+  console.log(livetransactions);
+
+  // Create CSV content
+  const csvContent = "data:text/csv;charset=utf-8," + transactions.map(transaction => Object.values(transaction).join(',')).join('\n');
+
+  // Create a data URI and create an anchor element for download
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "transactions.csv");
+
+  // Trigger a click on the anchor element to start the download
+  document.body.appendChild(link); // Required for Firefox
+  link.click();
+  document.body.removeChild(link); // Clean up
+
+  console.log("CSV exported");
+}
 
 
 
@@ -112,7 +129,7 @@ const saveTransactionsToLocalStorage = () => {
 
     <div class="md:p-2 py-2 flex flex-col gap-y-4 mx-2">
 
-      <div class="px-48">
+      <div class="px-28 md:px-48">
         <Balance :total="total" />
       </div>
 
@@ -122,13 +139,26 @@ const saveTransactionsToLocalStorage = () => {
 
       <!-- switch data source -->
       <div class="text-xs flex flex-row items-start justify-end gap-x-2 mr-2 ">
-        <p>
-          datasource: {{ datasource }}
-        </p>
-        <button @click="changedatasource">
-          <i class="pi text-teal-300 hover:text-teal-800"
-            :class="datasource == 'mock' ? 'pi-chevron-up' : 'pi-chevron-down'" />
-        </button>
+        <!-- export  -->
+        <div class="flex gap-x-2 items-start">
+          <p>
+            export
+          </p>
+          <button @click="exportdata(transactions)">
+            <i class="pi text-teal-300 hover:text-teal-800 pi-save" />
+          </button>
+        </div>
+
+        <!-- data source -->
+        <div class="flex gap-x-2 items-start">
+          <p>
+            datasource: {{ datasource }}
+          </p>
+          <button @click="changedatasource">
+            <i class="pi text-teal-300 hover:text-teal-800 "
+              :class="datasource == 'mock' ? 'pi-chevron-up' : 'pi-chevron-down'" />
+          </button>
+        </div>
       </div>
 
       <div class="mt-2">

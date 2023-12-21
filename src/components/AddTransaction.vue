@@ -61,7 +61,7 @@ const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
             class="bg-white p-4 rounded-md shadow-md text-xs md:text-sm flex flex-col items-stretch">
 
             <!-- one row -->
-            <div class="flex flex-row gap-x-2">
+            <div class="flex flex-col md:flex-row gap-x-2 ">
                 <!-- text -->
                 <div class="form-control mb-4 w-full">
                     <input type="text" id="text" placeholder="Groceries" v-model="text"
@@ -76,7 +76,7 @@ const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
             </div>
 
             <!-- one row -->
-            <div class="flex flex-row gap-x-2 justify-around">
+            <div class="flex flex-col md:flex-row gap-x-2 justify-around">
 
                 <!-- category dropdown -->
                 <div class="form-control mb-4 w-full">
