@@ -3,7 +3,7 @@
 todo
 
 - [ ] visualizing spend and how
-- [ ] export spend report
+- [x] export spend report
 - [ ] other expense things
 
 ## Project Setup
