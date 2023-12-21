@@ -30,10 +30,13 @@ let datasource = ref('mock');
 
 const changedatasource = () => {
   console.log(datasource.value);
+
+  const savedTransactions = JSON.parse(localStorage.getItem('transactions'));
+
   if (datasource.value == 'mock') {
     console.log("changing to localstorage")
     datasource.value = 'localstorage';
-    transactions.value = JSON.parse(localStorage.getItem('transactions'));
+    transactions.value = savedTransactions || [];
     return;
   }
   if (datasource.value == 'localstorage') {
