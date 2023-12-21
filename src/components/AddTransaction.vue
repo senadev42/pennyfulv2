@@ -15,10 +15,10 @@ const paymentType = ref('');
 
 const buttonStyle = computed(() => {
     return amount.value > 0 ? {
-        actualStyle: "border-b border-green-400 hover:text-black",
+        actualStyle: "border-b border-green-300 hover:bg-green-300",
         text: "Add Inflow"
     } : {
-        actualStyle: "border-b border-red-400 hover:text-black",
+        actualStyle: "border-b border-red-300 hover:bg-red-300",
         text: "Subtract Expense"
     }
 
