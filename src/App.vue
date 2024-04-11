@@ -13,9 +13,15 @@ import mockdata from "./mockdata.json"
 
 // on mount
 onMounted(() => {
+
+  //sanity
+  if (!localStorage.getItem('transactions')) {
+    localStorage.setItem('transactions', JSON.stringify([]));
+  }
+
   const savedTransactions = JSON.parse(localStorage.getItem('transactions'));
 
-  if (savedTransactions && datasource == "localstorage") {
+  if (datasource.value == "localstorage") {
     transactions.value = savedTransactions
   } else {
     transactions.value = mockdata.transactions;
@@ -130,7 +136,7 @@ const exportdata = (livetransactions) => {
 <template>
   <div class="bg-gray-100 min-h-screen flex flex-col items-center pb-8">
 
-    <div class="md:p-2 py-2 flex flex-col gap-y-4 mx-2">
+    <div class="sm:p-2 py-2 flex flex-col gap-y-4 mx-2 ">
 
       <div class="px-28 md:px-48">
         <Balance :total="total" />
