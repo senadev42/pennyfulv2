@@ -10,6 +10,7 @@ import IncomeExpenses from './components/IncomeExpenses.vue';
 import TransactionList from './components/TransactionList.vue';
 import AddTransaction from './components/AddTransaction.vue'
 import mockdata from "./mockdata.json"
+import Settings from './components/Settings.vue'
 
 // on mount
 onMounted(() => {
@@ -147,28 +148,8 @@ const exportdata = (livetransactions) => {
       <AddTransaction @transactionSubmitted="handleTransactionSubmitted" />
 
       <!-- switch data source -->
-      <div class="text-xs flex flex-row items-start justify-end gap-x-2 mr-2 ">
-        <!-- export  -->
-        <div class="flex gap-x-2 items-start">
-          <p>
-            export
-          </p>
-          <button @click="exportdata(transactions)">
-            <i class="pi text-teal-300 hover:text-teal-800 pi-save" />
-          </button>
-        </div>
-
-        <!-- data source -->
-        <div class="flex gap-x-2 items-start">
-          <p>
-            datasource: {{ datasource }}
-          </p>
-          <button @click="changedatasource">
-            <i class="pi text-teal-300 hover:text-teal-800 "
-              :class="datasource == 'mock' ? 'pi-chevron-up' : 'pi-chevron-down'" />
-          </button>
-        </div>
-      </div>
+      <Settings :exportdata="exportdata" :transactions="transactions" :changedatasource="changedatasource"
+        v-model:datasource="datasource" />
 
       <div class="mt-2">
         <TransactionList :transactions="transactions" @transactionDeleted="handleTransactionDeleted" />
