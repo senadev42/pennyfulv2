@@ -1,6 +1,5 @@
-<script setup>
+<script setup lang="ts">
 import { computed, watch, toRaw } from 'vue';
-
 
 const props = defineProps({
     transactions: {
@@ -21,16 +20,16 @@ const groupedTransactions = computed(() => {
     return grouped;
 });
 
-watch(() => groupedTransactions, (newTransactions) => {
 
-    console.log(newTransactions);
-
-}, { immediate: true });
-
-
+//utility
 const transactionClass = (amount) => {
     return amount >= 0 ? "text-green-500" : "text-red-500";
 };
+
+function formatDate(dateString) {
+    const dateObj = new Date(dateString);
+    return new Intl.DateTimeFormat('default', { dateStyle: 'long' }).format(dateObj);
+}
 
 //deletion objects
 let deleteemit = defineEmits(["transactionDeleted"]);
@@ -41,28 +40,23 @@ const onDelete = (target) => {
 
 <template>
     <!-- Loop through grouped transactions -->
-    <ul v-if="Object.keys(groupedTransactions).length > 0" id="list">
+    <ul v-if="Object.keys(groupedTransactions).length > 0" id="list" class="min-h-screen">
+
         <div v-for="(transactions, date) in groupedTransactions" :key="date"
-            class="mb-5 bg-white p-4 rounded-lg shadow-sm">
-            <h3 class="text-xs mb-2 text-gray-400">{{ date }}</h3>
-            <!-- Display the date as a header for transactions grouped under it -->
+            class=" bg-white rounded-lg shadow-sm mb-2 p-2">
+
+
+            <h3 class="text-xs mb-2 text-gray-400">{{ formatDate(date) }}</h3>
+
             <div v-for="transaction in transactions" :key="transaction.id">
-                <li class="grid grid-cols-8 gap-x-6 text-start border-t border-gray-200 py-2 text-sm md:text-base">
+                <li class="grid grid-cols-4 gap-x-6 py-1 text-start border-t border-gray-200 text-sm md:text-base">
 
-                    <!-- Transaction name -->
-                    <span class="text-gray-800 col-span-4">{{ transaction.text }}</span>
+                    <span class="text-gray-800 col-span-2">{{ transaction.text }}</span>
 
-                    <!-- Transaction amount -->
-                    <span :class="transactionClass(transaction.amount)" class="col-span-2">
+                    <span :class="transactionClass(transaction.amount)" class="col-span-1">
                         ${{ Math.abs(transaction.amount) }}
                     </span>
 
-                    <!-- More info -->
-                    <button class="delete-btn focus:outline-none col-span-1" @click="moreinfo(transaction.id)">
-                        <!-- <i class="pi pi-info-circle text-teal-300 hover:text-teal-800" /> -->
-                    </button>
-
-                    <!-- Delete -->
                     <button class="delete-btn focus:outline-none col-span-1" @click="onDelete(transaction.id)">
                         <i class="pi pi-trash text-teal-300 hover:text-teal-800" />
                     </button>
@@ -71,7 +65,7 @@ const onDelete = (target) => {
         </div>
     </ul>
 
-    <div v-else class="text-gray-500 text-sm px-14 text-center">
+    <div v-else class="text-gray-500 text-sm px-14 text-center ">
         Nothing for now.
     </div>
 </template>
