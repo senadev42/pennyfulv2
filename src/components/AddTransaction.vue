@@ -6,7 +6,7 @@ import { ref, computed } from 'vue';
 const text = ref('');
 const amount = ref('');
 const category = ref('');
-const date = ref('');
+const date = ref(new Date().toISOString().slice(0, 10));
 const paymentType = ref('');
 
 
@@ -28,6 +28,8 @@ let submitemit = defineEmits(['transactionSubmitted']);
 
 const onSubmit = () => {
 
+    console.log(date);
+
     //basic validation
     if (!text.value || !amount.value) {
         console.log('Both fields must be filled.');
@@ -37,6 +39,7 @@ const onSubmit = () => {
     const onetransaction = {
         text: text.value,
         amount: parseFloat(amount.value),
+        date: date.value
     };
 
     submitemit('transactionSubmitted', onetransaction);
@@ -61,29 +64,31 @@ const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
             class="bg-white p-4 rounded-md shadow-md text-xs md:text-sm flex flex-col items-stretch">
 
             <!-- one row -->
-            <div class="flex flex-col md:flex-row gap-x-2 ">
+            <div class="flex flex-row gap-x-2 ">
                 <!-- text -->
                 <div class="form-control mb-4 w-full">
                     <input type="text" id="text" placeholder="Groceries" v-model="text"
                         class="w-full border border-gray-300 rounded-md py-2 px-2 focus:outline-none focus:border-teal-500" />
                 </div>
                 <!-- amount -->
-                <div class="form-control mb-4 w-full ">
-                    <input type="text" id="amount" placeholder="-13.50" v-model="amount"
-                        class="w-full border border-gray-300 rounded-md py-2 px-2 focus:outline-none focus:border-teal-500" />
-                </div>
+
 
             </div>
 
             <!-- one row -->
-            <!-- <div class="flex flex-col md:flex-row gap-x-2 justify-around">
+            <div class="flex flex-row gap-x-2 justify-around">
 
-                <div class="form-control mb-4 w-full">
+                <!-- <div class="form-control mb-4 w-full">
                     <select id="category" v-model="category"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
                         <option value="" disabled selected>Category</option>
                         <option v-for="cat in categories" :key="cat">{{ cat }}</option>
                     </select>
+                </div> -->
+
+                <div class="form-control mb-4 w-full ">
+                    <input type="text" id="amount" placeholder="-13.50" v-model="amount"
+                        class="w-full border border-gray-300 rounded-md py-2 px-2 focus:outline-none focus:border-teal-500" />
                 </div>
 
                 <div class="form-control mb-4 w-full">
@@ -91,14 +96,14 @@ const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500" />
                 </div>
 
-                <div class="form-control mb-4 w-full">
+                <!-- <div class="form-control mb-4 w-full">
                     <select id="paymentType" v-model="paymentType"
                         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-teal-500">
                         <option value="" disabled selected>Payment</option>
                         <option v-for="payment in paymentTypes" :key="payment">{{ payment }}</option>
                     </select>
-                </div>
-            </div> -->
+                </div> -->
+            </div>
 
 
             <div class="grid grid-cols-4 gap-x-1">
@@ -113,4 +118,3 @@ const paymentTypes = ['Credit Card', 'Debit Card', 'Cash', 'Bank Transfer'];
         </form>
     </div>
 </template>
-  

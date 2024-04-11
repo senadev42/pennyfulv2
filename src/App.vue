@@ -85,7 +85,8 @@ const handleTransactionSubmitted = (transactionData) => {
   transactions.value.push({
     id: Math.floor(Math.random() * 1000000),
     text: transactionData.text,
-    amount: transactionData.amount
+    amount: transactionData.amount,
+    date: transactionData.date
   });
 
   if (datasource.value == 'localstorage') saveTransactionsToLocalStorage();
@@ -135,13 +136,14 @@ const exportdata = (livetransactions) => {
 
 
 <template>
-  <div class="bg-gray-100 min-h-screen flex flex-col items-center pb-8">
+  <div class="bg-gray-100 min-h-screen pb-8 flex flex-col items-center">
 
-    <div class="sm:p-2 py-2 flex flex-col gap-y-4 mx-2 ">
+    <div class="grid grid-cols-1 w-[90%] md:w-[33rem] mx-auto gap-y-2">
 
-      <div class="px-28 md:px-48">
+      <div class="mt-10">
         <Balance :total="total" />
       </div>
+
 
       <IncomeExpenses :income="+income" :expenses="+expenses" />
 
