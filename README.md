@@ -1,24 +1,35 @@
-# pennyful_v2
+# Pennyful (V2)
 
-todo
+Minimalist expense tracker. Integrates with your favorite spreadsheet (any of them). Entirely in the browser.
 
-- [ ] visualizing spend and how
-- [x] export spend report
-- [ ] other expense things
+#### Feature Roadmap
 
-## Project Setup
+1. Fundamentals: Basic working expense tracker
+
+- export spend report
+- visualizing spend
+- filtering, grouping, sorting
+- Multiple currencies
+- PWA functionality
+
+2. Budgets
+   TBA
+
+### Getting Started
+
+#### Project Setup
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+#### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+#### Compile and Minify for Production
 
 ```sh
 npm run build
